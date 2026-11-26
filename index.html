@@ -192,6 +192,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .price small{font-family:var(--f-body);font-size:.9rem;font-weight:500;color:var(--dim)}
 .plan ul{margin:0;padding:0 0 0 18px;display:grid;gap:7px;color:var(--muted);font-size:.95rem}
 .plan .btn{margin-top:auto;justify-content:space-between}
+.plan.impl{margin-top:44px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center;border-color:var(--orange);background:linear-gradient(120deg,#1A110C,var(--bg-2) 60%)}
+.impl ul{margin-top:14px}
+.impl-price{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+@media (max-width:760px){.plan.impl{grid-template-columns:1fr}}
 .plan .btn.out{justify-content:center}
 .offer .note{margin-top:22px;color:var(--dim)}
 
@@ -291,7 +295,7 @@ footer a{color:var(--fg)}
           <text font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="2.4" fill="#F1EFEA"><textPath href="#c">CLONE COM IA · ROSTO + VOZ · </textPath></text></svg>
           <b>IA</b>
         </div>
-        <p class="mono" style="color:var(--orange)"><span class="dot rec"></span>Demonstração grátis · sem fidelidade</p>
+        <p class="mono" style="color:var(--orange)"><span class="dot rec"></span>Demonstração grátis · 1 cliente por segmento na sua cidade</p>
       </div>
       <h1>Você grava uma vez. <em>Seu clone</em> aparece toda semana.</h1>
       <p class="lead">Eu crio o seu clone com IA, com o seu rosto e a sua voz, e entrego vídeos prontos para postar direto no seu WhatsApp. Você não liga a câmera de novo.</p>
@@ -301,7 +305,7 @@ footer a{color:var(--fg)}
         <li><span>03</span>Você aprova pelo WhatsApp e o vídeo sai agendado no seu perfil</li>
       </ol>
       <div class="hero-cta"><a class="btn" href="#comecar">Ver meu clone grátis <i>→</i></a><a class="wa-link" href="#comecar" hidden>ou fale comigo no WhatsApp</a></div>
-      <p class="mono" style="color:var(--dim)">Você só paga se gostar da demonstração</p>
+      <p class="mono" style="color:var(--dim)">Tente achar qual vídeo do meu perfil é clone</p>
     </div>
     <div class="portrait" aria-label="Nicolas Antonini à frente de cópias do próprio clone">
       <div class="img"></div>
@@ -434,40 +438,53 @@ footer a{color:var(--fg)}
     </div>
     <div class="bill">
       <div><span>Videomaker para gravar toda semana<small>4 diárias por mês</small></span><b>R$ 2.000</b></div>
-      <div><span>Roteirista<small>16 roteiros</small></span><b>R$ 800</b></div>
-      <div><span>Editor de vídeo<small>16 vídeos com legenda</small></span><b>R$ 1.200</b></div>
+      <div><span>Roteirista<small>20 roteiros</small></span><b>R$ 1.000</b></div>
+      <div><span>Editor de vídeo<small>20 vídeos com legenda</small></span><b>R$ 1.500</b></div>
       <div><span>Social media<small>Capas e agendamento</small></span><b>R$ 900</b></div>
       <div><span>Ferramentas de IA<small>Clone, voz e edição</small></span><b>R$ 450</b></div>
-      <div class="total"><span>Plano Constância<small>16 vídeos por mês, tudo incluído</small></span><b><s>R$ 5.350</s>R$ 1.197</b></div>
+      <div class="total"><span>Plano Constância<small>20 vídeos por mês, tudo incluído</small></span><b><s>R$ 5.850</s>R$ 2.000</b></div>
     </div>
   </div>
 </section>
 
 <section class="offer" id="planos">
   <div class="wrap">
-    <p class="mono chap"><b>06</b> Planos</p>
-    <h2>Escolha quantas vezes quer aparecer.</h2>
-    <div class="plans">
+    <p class="mono chap"><b>06</b> Investimento</p>
+    <h2>Dois passos: implementar o clone, depois aparecer todo mês.</h2>
+    <div class="plan impl">
+      <div>
+        <p class="mono" style="color:var(--orange)">Passo 1 · Mês 1</p>
+        <h3 style="font-size:2rem;margin-top:8px">Implementação do clone</h3>
+        <ul><li>Captação do vídeo base com guia de luz e enquadramento</li><li>Clone de rosto e voz, com até 3 looks</li><li>Diagnóstico do seu perfil e estudo do seu nicho</li><li>Primeiro teste sem edição para você aprovar</li><li><b>20 vídeos prontos no primeiro mês</b></li></ul>
+      </div>
+      <div class="impl-price">
+        <div class="price">R$ 4.997</div>
+        <p style="color:var(--muted)">ou 10x de R$ 500 · <b style="color:var(--fg)">R$ 4.500 à vista</b></p>
+        <a class="btn" href="#comecar" data-plan="Implementação">Quero implementar <i>→</i></a>
+      </div>
+    </div>
+    <p class="mono" style="margin:40px 0 0;color:var(--orange)">Passo 2 · a partir do mês 2</p>
+    <div class="plans" style="margin-top:16px">
       <div class="plan">
         <div class="row"><h3>Presença</h3></div>
-        <div class="price">R$ 697<small> /mês</small></div>
-        <ul><li>8 vídeos por mês (2 por semana)</li><li>Roteiros aprovados no WhatsApp</li><li>Edição com legenda animada</li></ul>
+        <div class="price">R$ 1.500<small> /mês</small></div>
+        <ul><li>12 vídeos por mês (3 por semana)</li><li>Roteiros aprovados no WhatsApp</li><li>Edição com legenda e capa</li></ul>
         <a class="btn out" href="#comecar" data-plan="Presença">Escolher Presença</a>
       </div>
       <div class="plan hot">
         <div class="row"><h3>Constância</h3><span class="tag">Mais escolhido</span></div>
-        <div class="price">R$ 1.197<small> /mês</small></div>
-        <ul><li>16 vídeos por mês (4 por semana)</li><li>Pautas semanais do seu nicho</li><li>Edição, legenda e capa no padrão</li><li>Agendamento no Instagram</li></ul>
+        <div class="price">R$ 2.000<small> /mês</small></div>
+        <ul><li>20 vídeos por mês (1 por dia útil)</li><li>Pautas semanais do seu nicho</li><li>Edição, legenda e capa no padrão</li><li>Postagem no Instagram após sua aprovação</li></ul>
         <a class="btn" href="#comecar" data-plan="Constância">Quero o Constância <i>→</i></a>
       </div>
       <div class="plan">
         <div class="row"><h3>Autoridade</h3></div>
-        <div class="price">R$ 1.997<small> /mês</small></div>
-        <ul><li>30 vídeos por mês (1 por dia)</li><li>Tudo do Constância</li><li>Carrosséis com o seu conteúdo</li><li>Relatório mensal de desempenho</li></ul>
+        <div class="price">R$ 2.900<small> /mês</small></div>
+        <ul><li>30 vídeos por mês</li><li>Tudo do Constância</li><li>Mais de um porta-voz clonado</li><li>Relatório mensal de desempenho</li></ul>
         <a class="btn out" href="#comecar" data-plan="Autoridade">Escolher Autoridade</a>
       </div>
     </div>
-    <p class="note">Criação do clone: R$ 297, pagos uma vez. Sem fidelidade: cancele quando quiser.</p>
+    <p class="note"><b style="color:var(--fg)">Exclusividade:</b> atendo só 1 cliente por segmento em cada cidade. Contrato mínimo de 3 meses; depois é mensal, com aviso de 30 dias.</p>
   </div>
 </section>
 
@@ -475,13 +492,13 @@ footer a{color:var(--fg)}
   <div class="wrap guar">
     <div class="stamp" aria-hidden="true">
       <svg viewBox="0 0 100 100"><defs><path id="c2" d="M50,50 m-43,0 a43,43 0 1,1 86,0 a43,43 0 1,1 -86,0"/></defs>
-      <text font-family="JetBrains Mono, monospace" font-size="6.2" letter-spacing="2" fill="#F1EFEA"><textPath href="#c2">DEMONSTRAÇÃO GRÁTIS · SEM FIDELIDADE · DEMONSTRAÇÃO GRÁTIS · SEM FIDELIDADE ·</textPath></text></svg>
-      <b>0<small>risco</small></b>
+      <text font-family="JetBrains Mono, monospace" font-size="6.2" letter-spacing="2" fill="#F1EFEA"><textPath href="#c2">DEMONSTRAÇÃO GRÁTIS · VOCÊ APROVA O CLONE · DEMONSTRAÇÃO GRÁTIS · VOCÊ APROVA O CLONE ·</textPath></text></svg>
+      <b>✓<small>você aprova</small></b>
     </div>
     <div>
       <p class="mono chap"><b>07</b> Garantia</p>
-      <h2 class="reveal" data-hl="antes de pagar.">Você vê o seu clone antes de pagar.</h2>
-      <p class="lead" style="margin-top:22px">Você grava, eu crio uma demonstração com o seu rosto e a sua voz e mando no seu WhatsApp. Se não gostar, não paga nada. Se contratar, não tem fidelidade: cancela quando quiser e o seu clone é apagado.</p>
+      <h2 class="reveal" data-hl="antes de decidir.">Você vê o clone funcionando antes de decidir.</h2>
+      <p class="lead" style="margin-top:22px">Na demonstração grátis eu mostro clones meus gravando de verdade. O desafio: abra o meu perfil e tente achar qual vídeo é clone. Se contratar, o primeiro teste do seu clone vai sem edição, e a produção só começa quando você aprovar.</p>
     </div>
   </div>
 </section>
@@ -508,12 +525,13 @@ footer a{color:var(--fg)}
     <p class="mono chap"><b>09</b> Dúvidas</p>
     <h2 style="margin-bottom:40px">Você pode se perguntar…</h2>
     <div class="faq">
-      <details><summary>O clone fica com cara de IA?</summary><p>O clone usa o seu rosto, a sua voz e o seu jeito de falar, porque é treinado com o seu vídeo. Por isso a gravação inicial importa: eu te mando um guia de luz e enquadramento antes. E você vê a demonstração antes de pagar.</p></details>
+      <details><summary>O clone fica com cara de IA?</summary><p>O clone usa o seu rosto, a sua voz e o seu jeito de falar, porque é treinado com o seu vídeo. Por isso a gravação inicial importa: eu te mando um guia de luz e enquadramento antes. E na demonstração você vê clones reais funcionando antes de decidir.</p></details>
       <details><summary>Não entendo nada de tecnologia. É para mim?</summary><p>É. Você grava 2 minutos no celular e o resto acontece pelo WhatsApp: manda o tema, aprova o roteiro e recebe o vídeo.</p></details>
       <details><summary>Preciso dizer que o vídeo foi feito com IA?</summary><p>Recomendo que sim. O Instagram e o TikTok pedem a marcação de conteúdo gerado por IA em vídeos realistas, e eu já entrego o post com essa marcação configurada.</p></details>
       <details><summary>O meu clone pode ser usado para outra coisa?</summary><p>Não. Você assina um termo de uso de imagem e voz que diz exatamente para que ele serve. Ele não é vendido, compartilhado nem usado para treinar outros modelos, e é apagado se você cancelar.</p></details>
       <details><summary>Quanto tempo leva para começar?</summary><p>O clone fica pronto em até 48 h depois da gravação. O primeiro vídeo sai na mesma semana.</p></details>
-      <details><summary>E se eu quiser cancelar?</summary><p>Não tem fidelidade. Você avisa pelo WhatsApp e a cobrança para no mês seguinte.</p></details>
+      <details><summary>E se eu quiser cancelar?</summary><p>O contrato mínimo é de 3 meses: o mês da implementação e mais dois. Depois disso é mensal; você avisa com 30 dias de antecedência e o seu clone é apagado.</p></details>
+      <details><summary>Por que só um cliente por segmento?</summary><p>Para não repetir ideias nem defender o seu concorrente. Se eu atendo um dentista na sua cidade, não atendo outro.</p></details>
     </div>
   </div>
 </section>
@@ -527,7 +545,7 @@ footer a{color:var(--fg)}
       <div>
         <p class="mono chap"><span class="dot rec"></span>Comece agora</p>
         <h3 style="font-size:2rem;line-height:1">Peça a sua demonstração grátis</h3>
-        <p class="lead" style="margin-top:16px">Preencha e me chame no WhatsApp. Você recebe o passo a passo da gravação e, depois, um vídeo de demonstração com o seu clone.</p>
+        <p class="lead" style="margin-top:16px">Preencha e me chame no WhatsApp. Marcamos uma conversa rápida: eu mostro clones funcionando de verdade e explico como seria no seu negócio.</p>
       </div>
       <form id="f" novalidate>
         <label for="nome">Seu nome<input id="nome" name="nome" autocomplete="name" placeholder="Ex.: Ana Souza" required></label>
