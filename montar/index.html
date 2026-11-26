@@ -84,7 +84,7 @@ textarea{resize:vertical;min-height:90px}
 .free i{width:9px;height:9px;border-radius:50%;flex:none;background:var(--ok)}
 .free.busy i{background:var(--spark)}
 
-.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .plan{position:relative;border:1.5px solid var(--line);background:var(--tile);border-radius:20px;padding:22px 20px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s;display:flex;flex-direction:column;gap:4px}
 .plan:hover{border-color:var(--muted)}
 .plan[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
@@ -139,6 +139,7 @@ aside h3{font-size:1.2rem;margin-bottom:12px}
   .mbar b{font-size:1.1rem;letter-spacing:-.02em}
   .mbar .btn{padding:10px 18px;font-size:.92rem}
 }
+@media (max-width:900px){.plans{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){
   .plans,.pay,.fields{grid-template-columns:minmax(0,1fr)}
   .plan .vd{font-size:2.2rem}
@@ -227,11 +228,12 @@ aside h3{font-size:1.2rem;margin-bottom:12px}
       <section class="step" data-step="3" aria-labelledby="h3s">
         <p class="count">Passo 3 de 5</p>
         <h2 id="h3s">Quantos vídeos por mês?</h2>
-        <p class="hint">O 1º mês já tem 20 vídeos na implementação. O plano vale a partir do 2º mês.</p>
+        <p class="hint">A implementação do clone é grátis em qualquer plano. Quer testar antes? Escolha o avulso.</p>
         <div class="plans" data-name="plano" data-single style="margin-top:26px">
-          <button type="button" class="plan" data-v="12" data-p="1500"><span class="tag"></span><span class="nm">Presença</span><span class="vd">12 <small>vídeos</small></span><span class="pr">R$ 1.500/mês</span><span class="pv">≈ R$ 125 por vídeo</span></button>
-          <button type="button" class="plan" data-v="20" data-p="2000" aria-pressed="true"><span class="tag">Recomendado</span><span class="nm">Constância</span><span class="vd">20 <small>vídeos</small></span><span class="pr">R$ 2.000/mês</span><span class="pv">R$ 100 por vídeo</span></button>
-          <button type="button" class="plan" data-v="30" data-p="2900"><span class="tag"></span><span class="nm">Autoridade</span><span class="vd">30 <small>vídeos</small></span><span class="pr">R$ 2.900/mês</span><span class="pv">≈ R$ 97 por vídeo</span></button>
+          <button type="button" class="plan" data-v="12" data-p="1997"><span class="tag"></span><span class="nm">Presença</span><span class="vd">12 <small>vídeos</small></span><span class="pr">R$ 1.997/mês</span><span class="pv">≈ R$ 166 por vídeo</span></button>
+          <button type="button" class="plan" data-v="20" data-p="2997" aria-pressed="true"><span class="tag">Recomendado</span><span class="nm">Constância</span><span class="vd">20 <small>vídeos</small></span><span class="pr">R$ 2.997/mês</span><span class="pv">R$ 100 por vídeo</span></button>
+          <button type="button" class="plan" data-v="30" data-p="3997"><span class="tag"></span><span class="nm">Autoridade</span><span class="vd">30 <small>vídeos</small></span><span class="pr">R$ 3.997/mês</span><span class="pv">≈ R$ 133 por vídeo</span></button>
+          <button type="button" class="plan" data-v="3" data-p="891"><span class="tag">Para testar</span><span class="nm">Avulso</span><span class="vd">3 <small>vídeos</small></span><span class="pr">R$ 891</span><span class="pv">R$ 297 por vídeo · clone incluso</span></button>
         </div>
         <p class="freq" id="freq"></p>
         <p class="q">Quem vai aparecer nos vídeos?</p>
@@ -266,12 +268,9 @@ aside h3{font-size:1.2rem;margin-bottom:12px}
 
       <section class="step" data-step="5" aria-labelledby="h5s">
         <p class="count">Passo 5 de 5</p>
-        <h2 id="h5s">Como prefere pagar a implementação?</h2>
-        <p class="hint">Guia de fotos, clone de rosto e voz com até 3 looks, diagnóstico do perfil e 20 vídeos no 1º mês.</p>
-        <div class="pay" data-name="pagamento" data-single style="margin-top:26px">
-          <button type="button" class="plan" aria-pressed="true"><span class="tag"></span><span class="nm">Parcelado</span><span class="vd">10x R$ 500</span><span class="pv">no cartão</span></button>
-          <button type="button" class="plan"><span class="tag">Economize R$ 497</span><span class="nm">À vista</span><span class="vd">R$ 4.500</span><span class="pv">Pix ou transferência</span></button>
-        </div>
+        <h2 id="h5s">Quase lá. Para onde mando a sua proposta?</h2>
+        <p class="hint">A implementação do clone (guia de fotos, rosto e voz com até 3 looks e diagnóstico do perfil) vale R$ 4.997 e sai de graça com fidelidade de 3 meses.</p>
+        <div class="free" style="margin-top:22px"><i></i><span><b>Implementação grátis</b> · vale R$ 4.997, com fidelidade de 3 meses</span></div>
         <div class="fields">
           <label class="f">Seu nome<input type="text" id="nome" placeholder="Como posso te chamar?" autocomplete="given-name"></label>
           <label class="f">Seu WhatsApp<input type="tel" id="whats" placeholder="(64) 99999-9999" autocomplete="tel" inputmode="tel"></label>
@@ -305,15 +304,15 @@ aside h3{font-size:1.2rem;margin-bottom:12px}
       <div class="li"><span>Plano</span><span id="rPlano">—</span></div>
       <div class="li"><span>Vídeos</span><span id="rVid">—</span></div>
       <div class="tot">
-        <div class="row"><small>Implementação · mês 1</small><span class="big" id="rImpl">10x R$ 500</span></div>
-        <div class="row"><small>A partir do mês 2</small><span class="big" id="rMes">R$ 2.000</span></div>
+        <div class="row"><small>Implementação do clone</small><span class="big" id="rImpl"><s style="font-size:.6em;color:var(--muted);font-weight:500">R$ 4.997</s> Grátis</span></div>
+        <div class="row"><small id="rMesL">Por mês</small><span class="big" id="rMes">R$ 2.997</span></div>
       </div>
-      <p class="excl"><b>Exclusividade:</b> 1 empresa por segmento em cada cidade, reservada após o primeiro pagamento. Contrato mínimo de 3 meses; depois é mensal, com aviso de 30 dias.</p>
+      <p class="excl"><b>Exclusividade:</b> 1 empresa por segmento em cada cidade, reservada após o primeiro pagamento. Fidelidade de 3 meses em troca da implementação grátis; depois é mensal, com aviso de 30 dias.</p>
     </aside>
   </div>
 </div>
 
-<div class="mbar"><span><small>A partir do mês 2</small><b id="mMes">R$ 2.000/mês</b></span><button type="button" class="btn" id="mNext">Continuar</button></div>
+<div class="mbar"><span><small>Por mês · implementação grátis</small><b id="mMes">R$ 2.997/mês</b></span><button type="button" class="btn" id="mNext">Continuar</button></div>
 
 <script>
 // Segmentos já fechados (manter igual à página inicial). Ex.: { seg: "Odontologia", cidade: "Rio Verde" }
@@ -353,17 +352,18 @@ function update() {
   $("#rNicho").textContent = nicho() || "—";
   $("#rCidade").textContent = cid || "—";
   $("#rPlano").textContent = p ? p.nome : "—";
-  $("#rVid").textContent = p ? `20 no 1º mês · ${p.v}/mês depois` : "—";
+  $("#rVid").textContent = p ? (p.v === 3 ? "3 vídeos avulsos" : `${p.v} por mês`) : "—";
   $("#rMes").textContent = p ? brl(p.p) : "—";
   $("#mMes").textContent = p ? brl(p.p) + "/mês" : "—";
-  $("#rImpl").textContent = val("pagamento")[0] === "À vista" ? "R$ 4.500" : "10x R$ 500";
+  $("#rMesL").textContent = p && p.v === 3 ? "Total do avulso" : "Por mês";
   const free = $("#free");
   if (nicho() && cid.length > 2) {
     const busy = ocupado();
     free.hidden = false; free.classList.toggle("busy", busy);
     $("#freeTxt").textContent = busy ? `${nicho()} em ${cid} já tem cliente. Você pode entrar na lista de espera.` : `${nicho()} em ${cid} ainda está livre.`;
   } else free.hidden = true;
-  if (p) {
+  if (p && p.v === 3) { $("#freq").textContent = "3 vídeos com o seu clone, para você testar antes de assinar um plano."; }
+  else if (p) {
     const sem = (p.v / 4.3).toFixed(1).replace(".0", "").replace(".", ",");
     const atual = val("freqAtual")[0];
     $("#freq").innerHTML = "";
@@ -413,7 +413,7 @@ $("#f").addEventListener("submit", e => e.preventDefault());
 
 function propostaUrl() {
   const p = plano(), d = new Date(Date.now() + 2 * 864e5);
-  const key = { 12: "presenca", 20: "constancia", 30: "autoridade" }[p ? p.v : 20];
+  const key = { 12: "presenca", 20: "constancia", 30: "autoridade", 3: "avulso" }[p ? p.v : 20];
   const u = new URLSearchParams({ cliente: $("#empresa").value.trim() || $("#nome").value.trim(), nicho: nicho(), plano: key, validade: d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }) });
   return "https://antoninimov.com.br/proposta/?" + u.toString();
 }
@@ -459,12 +459,11 @@ function sendWhats(sameTab) {
   add("Posta hoje", val("freqAtual")[0] && val("freqAtual")[0] + " vídeo(s) por semana");
   add("Quem cuida", val("quem")[0]);
   add("O que trava", val("trava"));
-  add("Plano", p && `${p.nome} · ${p.v} vídeos/mês · ${brl(p.p)}/mês a partir do mês 2`);
+  add("Plano", p && (p.v === 3 ? `Avulso · 3 vídeos · ${brl(p.p)} (R$ 297 cada)` : `${p.nome} · ${p.v} vídeos/mês · ${brl(p.p)}/mês · implementação grátis (fidelidade 3 meses)`));
   add("Quem aparece", val("rosto")[0]);
   add("Objetivo", val("objetivo")[0]);
   add("Formatos", val("formatos"));
   add("Voz", val("voz")[0]);
-  add("Implementação", val("pagamento")[0] === "À vista" ? "R$ 4.500 à vista" : "10x de R$ 500");
   add("Meu WhatsApp", $("#whats").value.trim());
   add("Melhor horário", $("#horario").value.trim());
   add("Obs", $("#obs").value.trim());
@@ -477,7 +476,7 @@ function sendWhats(sameTab) {
 }
 
 // plano vindo da página principal (?plano=presenca|constancia|autoridade)
-{ const pq = { presenca: "12", constancia: "20", autoridade: "30" }[(new URLSearchParams(location.search).get("plano") || "").toLowerCase()];
+{ const pq = { presenca: "12", constancia: "20", autoridade: "30", avulso: "3" }[(new URLSearchParams(location.search).get("plano") || "").toLowerCase()];
   if (pq) document.querySelectorAll('[data-name="plano"] button').forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === pq))); }
 update();
 </script>

@@ -182,33 +182,34 @@ footer .in{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;al
 <section class="slide alt" id="investimento">
   <div class="in c">
     <p class="eyebrow">Investimento</p>
-    <h2 class="h2">Dois passos. Sem surpresa.</h2>
+    <h2 class="h2">Sem taxa de implementação.</h2>
     <div class="inv">
       <div class="card">
-        <p style="font-weight:600;color:var(--fg)">Mês 1 · Implementação</p>
-        <span class="big">R$ 4.997</span>
-        <p>ou <b style="color:var(--fg)">10x de R$ 500</b> · <b style="color:var(--fg)">R$ 4.500 à vista</b></p>
-        <ul><li>Guia de fotos e clone de rosto e voz, com até 3 looks</li><li>Diagnóstico do seu perfil e do seu nicho</li><li>20 vídeos prontos no primeiro mês</li></ul>
+        <p style="font-weight:600;color:var(--fg)">Implementação do clone</p>
+        <span class="big"><s style="font-size:.5em;color:var(--muted);font-weight:500">R$ 4.997</s> Grátis</span>
+        <p>Com fidelidade de 3 meses. Se cancelar antes, ela é cobrada.</p>
+        <ul><li>Guia de fotos e clone de rosto e voz, com até 3 looks</li><li>Diagnóstico do seu perfil e do seu nicho</li><li>Primeiro teste para você aprovar</li></ul>
       </div>
       <div class="card chosen">
-        <p style="font-weight:600">A partir do mês 2 · Plano <span data-f="planoNome">Constância</span></p>
-        <span class="big" data-f="preco">R$ 2.000/mês</span>
-        <p><span data-f="videos">20</span> vídeos por mês · <span data-f="porVideo">R$ 100 por vídeo</span></p>
+        <p style="font-weight:600" data-f="planoTitulo">Plano Constância · desde o 1º mês</p>
+        <span class="big" data-f="preco">R$ 2.997/mês</span>
+        <p><span data-f="videos">20</span> vídeos por mês · <span data-f="porVideo">≈ R$ 150 por vídeo</span></p>
       </div>
     </div>
     <div class="grid" style="margin-top:16px">
       <div class="card">
         <p style="font-weight:600;color:var(--fg)">Outros planos mensais</p>
         <div class="plans">
-          <div class="pl" data-p="presenca"><span>Presença · 12 vídeos por mês</span><b>R$ 1.500/mês</b></div>
-          <div class="pl" data-p="constancia"><span>Constância · 20 vídeos por mês</span><b>R$ 2.000/mês</b></div>
-          <div class="pl" data-p="autoridade"><span>Autoridade · 30 vídeos por mês</span><b>R$ 2.900/mês</b></div>
+          <div class="pl" data-p="presenca"><span>Presença · 12 vídeos por mês</span><b>R$ 1.997/mês</b></div>
+          <div class="pl" data-p="constancia"><span>Constância · 20 vídeos por mês</span><b>R$ 2.997/mês</b></div>
+          <div class="pl" data-p="autoridade"><span>Autoridade · 30 vídeos por mês</span><b>R$ 3.997/mês</b></div>
+          <div class="pl" data-p="avulso"><span>Avulso · para testar (mínimo 3 vídeos)</span><b>R$ 297/vídeo</b></div>
         </div>
       </div>
     </div>
     <div class="terms" style="text-align:left">
       <p><b>Exclusividade:</b> atendo só 1 empresa do seu segmento na sua cidade. A vaga fica reservada depois do primeiro pagamento.</p>
-      <p><b>Contrato:</b> mínimo de 3 meses, a implementação e mais dois. Depois é mensal, com aviso de 30 dias. Uso de imagem e voz autorizado por escrito.</p>
+      <p><b>Contrato:</b> fidelidade de 3 meses em troca da implementação grátis. Depois é mensal, com aviso de 30 dias. Uso de imagem e voz autorizado por escrito.</p>
       <p><b>Comparação:</b> uma produtora cobra a partir de R$ 300 por vídeo.</p>
     </div>
     <p class="valid"><i></i><span data-f="validadeTxt">Condição válida por 48 horas a partir do envio.</span></p>
@@ -236,12 +237,12 @@ footer .in{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;al
 
 <script>
 const q = new URLSearchParams(location.search);
-const planos = { presenca: ["Presença", 12, "R$ 1.500", "≈ R$ 125 por vídeo"], constancia: ["Constância", 20, "R$ 2.000", "R$ 100 por vídeo"], autoridade: ["Autoridade", 30, "R$ 2.900", "≈ R$ 97 por vídeo"] };
+const planos = { presenca: ["Presença", 12, "R$ 1.997/mês", "≈ R$ 166 por vídeo"], constancia: ["Constância", 20, "R$ 2.997/mês", "≈ R$ 150 por vídeo"], autoridade: ["Autoridade", 30, "R$ 3.997/mês", "≈ R$ 133 por vídeo"], avulso: ["Avulso", 3, "R$ 891", "R$ 297 por vídeo"] };
 const key = (q.get("plano") || "constancia").toLowerCase();
 const p = planos[key] || planos.constancia;
 const cliente = q.get("cliente") || "você";
 const val = {
-  cliente, nicho: q.get("nicho") || "sua empresa", planoNome: p[0], videos: p[1], preco: p[2] + "/mês", porVideo: p[3],
+  cliente, nicho: q.get("nicho") || "sua empresa", planoNome: p[0], videos: p[1], preco: p[2], porVideo: p[3], planoTitulo: key === "avulso" ? "Avulso · 3 vídeos para testar" : `Plano ${p[0]} · desde o 1º mês`,
   hoje: new Date().toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" }),
   validadeTxt: q.get("validade") ? `Condição válida até ${q.get("validade")}.` : "Condição válida por 48 horas a partir do envio."
 };
