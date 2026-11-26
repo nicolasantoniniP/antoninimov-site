@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="antoninimov · Clones com IA">
+<meta property="og:description" content="Você grava uma vez. Seu clone aparece toda semana.">
+<meta property="og:image" content="https://antoninimov.com.br/foto_hero.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2714%27 fill=%27%23FF5B1F%27/%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>antoninimov · Clones com IA</title>
+<meta name="description" content="Clones com IA: você grava uma vez e recebe vídeos prontos com o seu rosto e a sua voz toda semana, direto no WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: página de venda longa em capítulos numerados — fundo preto com grão, fotos P&B dos clones, números gigantes apagados, títulos que acendem palavra a palavra, laranja só nas ações e nos destaques */
+:root{
+  color-scheme:dark;
+  --bg:#070707;
+  --bg-2:#0F0F0F;
+  --card:#151515;
+  --card-2:#1C1C1C;
+  --fg:#F1EFEA;
+  --muted:#9C998F;
+  --dim:#6E6B64;
+  --ghost:#34322E;
+  --line:#262523;
+  --orange:#FF5B1F;
+  --on-orange:#0A0A0A;
+  --f-display:"Archivo","Arial Black",Arial,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.07;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(72px,10vw,136px)}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;margin:0;letter-spacing:-.025em;text-wrap:balance}
+h2{font-size:clamp(2.2rem,5.6vw,4.6rem);line-height:.98}
+h3{font-size:1.35rem;line-height:1.15;letter-spacing:-.01em}
+p{margin:0}
+.mono{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.chap{display:flex;gap:12px;align-items:center;margin-bottom:22px}
+.chap b{color:var(--orange);font-weight:500}
+.lead{font-size:clamp(1.05rem,1.6vw,1.22rem);color:var(--muted);max-width:56ch}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-right:10px;vertical-align:1px}
+.rec{animation:blink 1.3s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--orange);color:var(--on-orange);text-decoration:none;padding:12px 12px 12px 26px;border-radius:999px;border:0;font:inherit;font-weight:800;font-size:.95rem;letter-spacing:.02em;text-transform:uppercase;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;box-shadow:0 10px 40px -12px rgba(255,91,31,.55)}
+.btn i{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--fg);color:var(--on-orange);font-style:normal;font-family:var(--f-mono)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 16px 50px -12px rgba(255,91,31,.7)}
+.btn.out{background:transparent;color:var(--fg);border:1px solid #3A3936;padding:10px 20px;font-family:var(--f-mono);font-weight:500;font-size:.72rem;letter-spacing:.14em;box-shadow:none}
+.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.streaks{display:block;background:repeating-linear-gradient(180deg,currentColor 0 1px,transparent 1px 6px,currentColor 6px 8px,transparent 8px 15px,currentColor 15px 16px,transparent 16px 24px);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 25%,#000 60%,transparent);mask-image:linear-gradient(90deg,transparent,#000 25%,#000 60%,transparent)}
+
+/* faixa rolando */
+.marquee{background:var(--orange);color:var(--on-orange);overflow:hidden;white-space:nowrap;padding-block:8px}
+.marquee div{display:inline-flex;gap:28px;animation:roll 38s linear infinite}
+.marquee span{font-family:var(--f-mono);font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;display:inline-flex;align-items:center;gap:28px}
+.marquee span::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--on-orange)}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* topo */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(7,7,7,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:41;background:var(--bg)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;padding-block:14px;gap:16px}
+.brand{display:flex;align-items:baseline;gap:12px;font-family:var(--f-display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+.brand .mono{font-size:.66rem;color:var(--dim)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:0}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,56px);align-items:center;min-height:min(840px,92vh);padding-block:clamp(40px,6vw,72px)}
+.hero-copy{display:flex;flex-direction:column;gap:26px;position:relative;z-index:2;min-width:0}
+.hero .badge{display:flex;align-items:center;gap:18px}
+.seal{width:84px;height:84px;flex:none;position:relative}
+.seal svg{width:100%;height:100%;animation:spin 18s linear infinite}
+.seal b{position:absolute;inset:22px;border-radius:50%;background:var(--orange);color:var(--on-orange);display:grid;place-items:center;font-family:var(--f-display);font-size:1.2rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero h1{font-size:clamp(2.7rem,6.6vw,5.6rem);line-height:.92}
+.hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--fg)}
+.hero ol{list-style:none;margin:0;padding:18px 0 0;border-top:1px solid var(--line);display:grid;gap:8px;font-size:.95rem;color:#C9C6BE}
+.hero ol li{display:grid;grid-template-columns:34px 1fr}
+.hero ol li span{font-family:var(--f-mono);font-size:.72rem;color:var(--orange);padding-top:3px}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.wa-link{color:var(--fg);font-weight:600;text-underline-offset:4px}
+.portrait{position:relative;aspect-ratio:4/5;max-width:100%;min-width:0;width:100%;justify-self:end}
+.portrait .img{position:absolute;inset:0;background:url("foto_hero.jpg") center bottom/cover;
+  -webkit-mask-image:linear-gradient(180deg,#000 70%,transparent 100%),linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(180deg,#000 70%,transparent 100%),linear-gradient(90deg,transparent 0,#000 12%,#000 88%,transparent 100%);mask-composite:intersect}
+.cap{position:absolute;font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#C9C6BE;z-index:3}
+.cap.tl{top:5%;left:6%}.cap.tr{top:5%;right:6%;font-variant-numeric:tabular-nums}
+.cap.bl{bottom:6%;left:6%}.cap.br{bottom:6%;right:6%;color:var(--orange)}
+
+/* palavras que acendem */
+.reveal .w{color:var(--ghost);transition:color .3s ease}
+.reveal .w.on{color:var(--fg)}
+.reveal .w.hl.on{color:var(--orange)}
+
+/* aqui não */
+.nope{text-align:center;background:var(--bg-2);border-block:1px solid var(--line)}
+.nope h2{max-width:20ch;margin:0 auto 34px}
+.nope .lead{margin:0 auto;max-width:60ch}
+.nope .lead+.lead{margin-top:18px}
+
+/* sistema / agentes */
+.sys-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:end;margin-bottom:52px}
+.panel{background:var(--bg-2);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,91,31,.06),0 40px 120px -50px rgba(255,91,31,.35)}
+.panel-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line)}
+.panel-bar .lights{display:flex;gap:7px}.panel-bar .lights i{width:10px;height:10px;border-radius:50%;background:#2E2D2A}
+.panel-grid{display:grid;grid-template-columns:1.3fr 1fr}
+.agents{list-style:none;margin:0;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;border-right:1px solid var(--line)}
+.agent{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:var(--card);min-width:0;transition:background .3s}
+.agent.busy{background:#21160F}
+.agent .av{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;font-family:var(--f-mono);font-size:.7rem;background:var(--card-2);color:#D8D5CD}
+.agent.busy .av{background:var(--orange);color:var(--on-orange)}
+.agent b{display:block;font-size:.9rem;font-weight:600}
+.agent small{display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.agent small::before{content:"";width:6px;height:6px;border-radius:50%;background:#45433F}
+.agent.busy small{color:var(--orange)}.agent.busy small::before{background:var(--orange)}
+.agent.done small{color:#D8D5CD}.agent.done small::before{background:#D8D5CD}
+.report{padding:20px;display:flex;flex-direction:column;gap:16px}
+.report .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.report .stats div{background:var(--card);border-radius:12px;padding:14px}
+.report .stats strong{display:block;font-family:var(--f-display);font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.report .stats span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.feed{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);min-height:7.5em}
+.feed li span{color:var(--orange)}
+.features{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;border-top:1px solid var(--line)}
+.features div{padding:26px 26px 26px 0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.features div+div{padding-left:26px;border-left:1px solid var(--line)}
+.features p{color:var(--muted);font-size:.97rem}
+
+/* passos */
+.steps-sec{background:var(--bg-2);border-block:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps div{padding:36px 28px 40px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.steps div+div{border-left:1px solid var(--line)}
+.steps .n{font-family:var(--f-display);font-stretch:80%;font-weight:900;font-size:clamp(4rem,8vw,7rem);line-height:.8;color:var(--ghost);letter-spacing:-.04em;transition:color .4s}
+.steps div:hover .n{color:var(--orange)}
+.steps p{color:var(--muted)}
+.row-cta{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;padding-top:44px}
+.row-cta p{max-width:56ch;color:var(--muted);font-size:1.1rem}
+
+/* faixa de imagem */
+.band{padding:0;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.band-img{height:clamp(420px,70vw,860px);max-width:1240px;margin:0 auto;background:url("foto_scan.jpg") center 30%/cover;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.band .labels{position:absolute;left:0;right:0;bottom:28px;z-index:2}
+.band .labels .wrap{display:flex;justify-content:space-between}
+
+/* recebe */
+.get-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:end;margin-bottom:48px}
+.get{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line)}
+.get li{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:28px 28px 28px 0;border-bottom:1px solid var(--line);min-width:0}
+.get li:nth-child(even){padding-left:28px;border-left:1px solid var(--line)}
+.get li>span{font-family:var(--f-mono);font-size:.8rem;color:var(--orange);padding-top:6px}
+.get p{color:var(--muted);margin-top:6px;font-size:.97rem}
+
+/* para quem */
+.who{background:var(--bg-2);border-block:1px solid var(--line)}
+.who-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.who-list li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0;transition:border-color .3s}
+.who-list li:hover{border-color:var(--orange)}
+.who-list span{font-family:var(--f-mono);font-size:.74rem;color:var(--orange)}
+.who-list p{font-size:1.05rem;line-height:1.45}
+
+/* recapitulando */
+.recap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:start}
+.bill{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;padding:10px 26px}
+.bill div{display:flex;justify-content:space-between;gap:16px;padding-block:16px;border-bottom:1px dashed var(--line);align-items:baseline}
+.bill div:last-child{border-bottom:0}
+.bill small{display:block;color:var(--dim);font-size:.85rem}
+.bill b{font-family:var(--f-mono);font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bill .total{border-top:2px solid var(--fg);margin-top:4px}
+.bill .total b{font-family:var(--f-display);font-size:1.8rem;color:var(--orange)}
+.bill .total b s{color:var(--dim);font-size:1.1rem;margin-right:6px}
+.fine{font-size:.82rem;color:var(--dim)}
+
+/* oferta */
+.offer{background:radial-gradient(70% 60% at 50% 0%,rgba(255,91,31,.14),transparent 70%),var(--bg);border-top:1px solid var(--line)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+.plan{border:1px solid var(--line);border-radius:20px;padding:28px 24px;display:flex;flex-direction:column;gap:18px;background:var(--bg-2);min-width:0}
+.plan.hot{border-color:var(--orange);background:linear-gradient(180deg,#1A110C,var(--bg-2) 60%);box-shadow:0 30px 80px -40px rgba(255,91,31,.6)}
+.plan .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.plan .tag{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;background:var(--orange);color:var(--on-orange);padding:5px 10px;border-radius:999px}
+.price{font-family:var(--f-display);font-weight:800;font-size:2.8rem;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-family:var(--f-body);font-size:.9rem;font-weight:500;color:var(--dim)}
+.plan ul{margin:0;padding:0 0 0 18px;display:grid;gap:7px;color:var(--muted);font-size:.95rem}
+.plan .btn{margin-top:auto;justify-content:space-between}
+.plan .btn.out{justify-content:center}
+.offer .note{margin-top:22px;color:var(--dim)}
+
+/* garantia */
+.guar{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,64px);align-items:center}
+.stamp{aspect-ratio:1;max-width:320px;width:100%;border-radius:50%;border:1px solid var(--orange);display:grid;place-items:center;position:relative;justify-self:center;box-shadow:0 0 80px -20px rgba(255,91,31,.45) inset}
+.stamp svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 30s linear infinite}
+.stamp b{font-family:var(--f-display);font-size:clamp(3rem,7vw,5rem);line-height:.9;text-align:center}
+.stamp b small{display:block;font-family:var(--f-mono);font-size:.8rem;letter-spacing:.2em;font-weight:500;color:var(--orange)}
+
+/* quem faz */
+.about{background:var(--bg-2);border-block:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,64px);align-items:center}
+.about-img{aspect-ratio:4/5;background:url("foto_recorte.jpg") center bottom/cover;border-radius:6px;max-width:100%}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);margin-top:32px;border-top:1px solid var(--line)}
+.nums div{padding:18px 18px 0 0}
+.nums div+div{padding-left:18px;border-left:1px solid var(--line)}
+.nums strong{display:block;font-family:var(--f-display);font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.nums span{font-size:.86rem;color:var(--muted)}
+
+/* faq */
+.faq{border-top:1px solid var(--line);max-width:900px}
+details{border-bottom:1px solid var(--line);padding-block:22px}
+summary{cursor:pointer;font-weight:700;font-size:1.12rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--f-mono);font-size:1.3rem;line-height:1;color:var(--orange)}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin-top:10px;max-width:68ch}
+
+/* final + form */
+.final{text-align:center;background:radial-gradient(60% 50% at 50% 100%,rgba(255,91,31,.18),transparent 70%),var(--bg);border-top:1px solid var(--line)}
+.final h2{font-size:clamp(2.6rem,7vw,6rem);max-width:16ch;margin:0 auto 36px;line-height:.92}
+.final h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.5px var(--fg)}
+.signup{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);align-items:start;text-align:left;margin-top:72px;padding-top:56px;border-top:1px solid var(--line)}
+form{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;gap:16px;min-width:0}
+label{display:grid;gap:7px;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+input{font:inherit;font-family:var(--f-body);font-size:1rem;letter-spacing:0;text-transform:none;padding:13px 14px;border-radius:12px;border:1px solid #33322E;background:var(--bg);color:var(--fg);width:100%}
+.ok{font-size:.94rem;border:1px dashed var(--orange);padding:12px 14px;border-radius:12px}
+.ok a{color:var(--orange);font-weight:800}
+form .btn{justify-content:space-between}
+
+footer{color:var(--dim);padding-block:28px;border-top:1px solid var(--line);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--fg)}
+
+.float{position:fixed;right:max(18px,calc(env(safe-area-inset-right,0px) + 18px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:45;transition:opacity .3s,transform .3s}
+.float.hide{opacity:0;transform:translateY(20px);pointer-events:none}
+
+@media (max-width:980px){
+  .hero .wrap,.sys-head,.get-head,.recap,.guar,.about-grid,.signup{grid-template-columns:1fr}
+  .hero .wrap{min-height:0}
+  .portrait{width:min(520px,100%);justify-self:center;order:-1}
+  .panel-grid{grid-template-columns:1fr}
+  .agents{border-right:0;border-bottom:1px solid var(--line)}
+  .features{grid-template-columns:1fr}
+  .features div+div{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .steps{grid-template-columns:1fr 1fr}
+  .steps div:nth-child(3){border-left:0}
+  .steps div:nth-child(n+3){border-top:1px solid var(--line)}
+  .get{grid-template-columns:1fr}
+  .get li:nth-child(even){padding-left:0;border-left:0}
+  .who-list{grid-template-columns:1fr 1fr}
+  .plans{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .agents{grid-template-columns:1fr}
+  .steps,.who-list{grid-template-columns:1fr}
+  .steps div+div{border-left:0;border-top:1px solid var(--line)}
+  .top .btn.out{display:none}
+  .brand .mono{display:none}
+  .nums strong{font-size:1.7rem}
+  .float{left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));justify-content:space-between}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal .w{color:var(--fg)}}
+</style>
+</head>
+<body>
+
+<div class="marquee" aria-hidden="true"><div>
+  <span>antoninimov</span><span>Clones com IA</span><span>Grave uma vez</span><span>Apareça toda semana</span><span>Demonstração grátis</span><span>antoninimov</span><span>Clones com IA</span><span>Grave uma vez</span><span>Apareça toda semana</span><span>Demonstração grátis</span>
+  <span>antoninimov</span><span>Clones com IA</span><span>Grave uma vez</span><span>Apareça toda semana</span><span>Demonstração grátis</span><span>antoninimov</span><span>Clones com IA</span><span>Grave uma vez</span><span>Apareça toda semana</span><span>Demonstração grátis</span>
+</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">antoninimov <span class="mono">/ Clones com IA</span></div>
+    <a class="btn out" href="#comecar">Ver meu clone grátis</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <div class="badge">
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><defs><path id="c" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
+          <text font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="2.4" fill="#F1EFEA"><textPath href="#c">CLONE COM IA · ROSTO + VOZ · </textPath></text></svg>
+          <b>IA</b>
+        </div>
+        <p class="mono" style="color:var(--orange)"><span class="dot rec"></span>Demonstração grátis · sem fidelidade</p>
+      </div>
+      <h1>Você grava uma vez. <em>Seu clone</em> aparece toda semana.</h1>
+      <p class="lead">Eu crio o seu clone com IA, com o seu rosto e a sua voz, e entrego vídeos prontos para postar direto no seu WhatsApp. Você não liga a câmera de novo.</p>
+      <ol>
+        <li><span>01</span>Clone de rosto e voz criado a partir de 2 minutos de vídeo</li>
+        <li><span>02</span>Roteiro, edição, legenda e capa feitos por mim, no seu tom</li>
+        <li><span>03</span>Você aprova pelo WhatsApp e o vídeo sai agendado no seu perfil</li>
+      </ol>
+      <div class="hero-cta"><a class="btn" href="#comecar">Ver meu clone grátis <i>→</i></a><a class="wa-link" href="#comecar" hidden>ou fale comigo no WhatsApp</a></div>
+      <p class="mono" style="color:var(--dim)">Você só paga se gostar da demonstração</p>
+    </div>
+    <div class="portrait" aria-label="Nicolas Antonini à frente de cópias do próprio clone">
+      <div class="img"></div>
+      <span class="cap tl"><span class="dot rec"></span>Clone</span>
+      <span class="cap tr" id="tc">00:00:00:00</span>
+      <span class="cap bl">Original</span>
+      <span class="cap br">× 4 cópias</span>
+    </div>
+  </div>
+</section>
+
+<section class="nope">
+  <div class="wrap">
+    <p class="mono chap" style="justify-content:center"><span class="dot"></span>Aqui não</p>
+    <h2 class="reveal" data-hl="Aqui não.">Agendar gravação toda semana e travar na frente da câmera? Aqui não.</h2>
+    <p class="lead">Você conhece essa história: sabe que precisa aparecer, marca a gravação, perde a manhã, repete a mesma frase dez vezes e no fim posta um vídeo por mês. Quando contrata alguém, vira mais uma agenda para encaixar.</p>
+    <p class="lead">Aqui você grava uma única vez. Depois disso, quem aparece é o seu clone, e você só responde "ok" no WhatsApp.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sys-head">
+      <div>
+        <p class="mono chap"><b>01</b> O serviço</p>
+        <h2 class="reveal" data-hl="seu clone.">O time por trás do seu clone.</h2>
+      </div>
+      <p class="lead">Cada vídeo passa por uma linha de produção que eu montei com IA: pesquisa de pauta, roteiro, gancho, clone, edição, legenda, capa e agendamento. Você vê o resultado. O trabalho fica comigo.</p>
+    </div>
+
+    <div class="panel" aria-label="Painel ilustrativo da produção de um vídeo">
+      <div class="panel-bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="mono" style="color:var(--dim)">antoninimov · produção</span><span class="mono" style="color:var(--orange)"><span class="dot rec"></span>8 online</span></div>
+      <div class="panel-grid">
+        <ul class="agents" id="agents">
+          <li class="agent"><span class="av">PT</span><div><b>Pautas</b><small>aguardando</small></div></li>
+          <li class="agent"><span class="av">RT</span><div><b>Roteirista</b><small>aguardando</small></div></li>
+          <li class="agent"><span class="av">GC</span><div><b>Ganchos</b><small>aguardando</small></div></li>
+          <li class="agent"><span class="av">CL</span><div><b>Seu clone</b><small>aguardando</small></div></li>
+          <li class="agent"><span class="av">ED</span><div><b>Editor</b><small>aguardando</small></div></li>
+          <li class="agent"><span class="av">LG</span><div><b>Legendas</b><small>aguardando</small></div></li>
+          <li class="agent"><span class="av">CP</span><div><b>Capas</b><small>aguardando</small></div></li>
+          <li class="agent"><span class="av">AG</span><div><b>Agendador</b><small>aguardando</small></div></li>
+        </ul>
+        <div class="report">
+          <p class="mono" style="color:var(--dim)">Exemplo de uma semana</p>
+          <div class="stats">
+            <div><strong id="s1">0</strong><span>Roteiros</span></div>
+            <div><strong id="s2">0</strong><span>Vídeos</span></div>
+            <div><strong id="s3">0</strong><span>Agendados</span></div>
+            <div><strong id="s4">0h</strong><span>Na câmera</span></div>
+          </div>
+          <ul class="feed" id="feed" aria-live="off"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="features">
+      <div><p class="mono"><b style="color:var(--orange)">→</b> Estratégia</p><h3>Pautas do seu nicho</h3><p>Toda semana eu levanto o que está em alta na sua área e transformo em ideias de vídeo com o seu ponto de vista.</p></div>
+      <div><p class="mono"><b style="color:var(--orange)">→</b> Roteiro</p><h3>Escrito no seu tom</h3><p>Gancho nos primeiros 2 segundos, frases curtas e uma chamada final clara. Você aprova ou pede ajuste pelo WhatsApp.</p></div>
+      <div><p class="mono"><b style="color:var(--orange)">→</b> Produção</p><h3>Pronto para postar</h3><p>Seu clone grava, eu edito com legenda animada e capa no padrão do seu perfil, e o vídeo sai agendado.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="steps-sec">
+  <div class="wrap">
+    <p class="mono chap"><b>02</b> Como funciona</p>
+    <div class="steps">
+      <div><span class="n">01</span><h3>Gravar</h3><p>Um vídeo de 2 minutos no celular, de frente, uma única vez.</p></div>
+      <div><span class="n">02</span><h3>Autorizar</h3><p>Você assina o termo de uso de imagem e voz. Em até 48 h o clone está pronto.</p></div>
+      <div><span class="n">03</span><h3>Aprovar</h3><p>Você manda o tema por áudio ou escolhe uma pauta minha, e aprova o roteiro.</p></div>
+      <div><span class="n">04</span><h3>Postar</h3><p>O vídeo chega pronto no WhatsApp e sai agendado no seu Instagram.</p></div>
+    </div>
+    <div class="row-cta">
+      <p>Você não precisa aprender nenhuma ferramenta nem pagar assinatura em dólar. Tudo isso fica comigo, dentro de uma mensalidade fixa.</p>
+      <a class="btn" href="#comecar">Ver meu clone grátis <i>→</i></a>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-label="Retrato com metade do rosto original e metade virando clone">
+  <div class="band-img"></div>
+  <div class="labels"><div class="wrap"><span class="mono" style="color:var(--fg)"><span class="dot"></span>Original</span><span class="mono" style="color:var(--orange)">Clone · IA</span></div></div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="get-head">
+      <div>
+        <p class="mono chap"><b>03</b> O que você recebe</p>
+        <h2 class="reveal" data-hl="todo mês.">Tudo o que entra no seu plano, todo mês.</h2>
+      </div>
+      <p class="lead">Sem pacote fechado de agência e sem contrato longo. Você escolhe quantos vídeos quer por mês e pode mudar de plano quando quiser.</p>
+    </div>
+    <ul class="get">
+      <li><span>01</span><div><h3>Seu clone de rosto</h3><p>Criado a partir do seu vídeo de 2 minutos, com o seu jeito de olhar e de se mexer.</p></div></li>
+      <li><span>02</span><div><h3>Seu clone de voz</h3><p>A sua voz, com o seu sotaque e o seu ritmo. Nada de voz robótica.</p></div></li>
+      <li><span>03</span><div><h3>Pautas semanais</h3><p>Ideias de vídeo a partir do que está em alta no seu nicho, prontas para você escolher.</p></div></li>
+      <li><span>04</span><div><h3>Roteiros no seu tom</h3><p>Com gancho forte e chamada final. Você aprova cada um antes de virar vídeo.</p></div></li>
+      <li><span>05</span><div><h3>Edição com legenda</h3><p>Corte, legenda animada e formato vertical para Reels, TikTok e Shorts.</p></div></li>
+      <li><span>06</span><div><h3>Capas no padrão</h3><p>Capa de cada vídeo no mesmo estilo, para o seu perfil ter cara de marca.</p></div></li>
+      <li><span>07</span><div><h3>Agendamento</h3><p>O vídeo sai no dia e no horário combinados, sem você abrir o aplicativo.</p></div></li>
+      <li><span>08</span><div><h3>Atendimento no WhatsApp</h3><p>Pedidos, ajustes e entregas na mesma conversa, direto comigo.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="who">
+  <div class="wrap">
+    <p class="mono chap"><b>04</b> Para quem é</p>
+    <h2 class="reveal" style="margin-bottom:44px" data-hl="tempo de gravar.">Para quem precisa aparecer e não tem tempo de gravar.</h2>
+    <ul class="who-list">
+      <li><span>/01</span><p>Médicos, dentistas e nutricionistas que atendem o dia inteiro e não têm uma manhã livre para gravar.</p></li>
+      <li><span>/02</span><p>Advogados e contadores que querem explicar o que sabem sem virar influenciador.</p></li>
+      <li><span>/03</span><p>Corretores e lojistas que precisam mostrar produto toda semana, mesmo na correria.</p></li>
+      <li><span>/04</span><p>Quem já tentou gravar, travou na câmera e desistiu no terceiro vídeo.</p></li>
+      <li><span>/05</span><p>Quem acha que não entende nada de tecnologia. Você só grava 2 minutos e responde no WhatsApp.</p></li>
+      <li><span>/06</span><p>Empresas que querem o dono aparecendo sem tirar o dono da operação.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap recap">
+    <div>
+      <p class="mono chap"><b>05</b> Recapitulando</p>
+      <h2 class="reveal" data-hl="uma mensalidade.">Uma equipe inteira em uma mensalidade.</h2>
+      <p class="lead" style="margin-top:22px">Se você fosse montar isso por conta própria, precisaria contratar cada etapa separado e ainda gravar toda semana.</p>
+      <p class="fine" style="margin-top:14px">Valores de referência para um mês de produção. Variam por cidade e profissional.</p>
+    </div>
+    <div class="bill">
+      <div><span>Videomaker para gravar toda semana<small>4 diárias por mês</small></span><b>R$ 2.000</b></div>
+      <div><span>Roteirista<small>16 roteiros</small></span><b>R$ 800</b></div>
+      <div><span>Editor de vídeo<small>16 vídeos com legenda</small></span><b>R$ 1.200</b></div>
+      <div><span>Social media<small>Capas e agendamento</small></span><b>R$ 900</b></div>
+      <div><span>Ferramentas de IA<small>Clone, voz e edição</small></span><b>R$ 450</b></div>
+      <div class="total"><span>Plano Constância<small>16 vídeos por mês, tudo incluído</small></span><b><s>R$ 5.350</s>R$ 1.197</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="offer" id="planos">
+  <div class="wrap">
+    <p class="mono chap"><b>06</b> Planos</p>
+    <h2>Escolha quantas vezes quer aparecer.</h2>
+    <div class="plans">
+      <div class="plan">
+        <div class="row"><h3>Presença</h3></div>
+        <div class="price">R$ 697<small> /mês</small></div>
+        <ul><li>8 vídeos por mês (2 por semana)</li><li>Roteiros aprovados no WhatsApp</li><li>Edição com legenda animada</li></ul>
+        <a class="btn out" href="#comecar" data-plan="Presença">Escolher Presença</a>
+      </div>
+      <div class="plan hot">
+        <div class="row"><h3>Constância</h3><span class="tag">Mais escolhido</span></div>
+        <div class="price">R$ 1.197<small> /mês</small></div>
+        <ul><li>16 vídeos por mês (4 por semana)</li><li>Pautas semanais do seu nicho</li><li>Edição, legenda e capa no padrão</li><li>Agendamento no Instagram</li></ul>
+        <a class="btn" href="#comecar" data-plan="Constância">Quero o Constância <i>→</i></a>
+      </div>
+      <div class="plan">
+        <div class="row"><h3>Autoridade</h3></div>
+        <div class="price">R$ 1.997<small> /mês</small></div>
+        <ul><li>30 vídeos por mês (1 por dia)</li><li>Tudo do Constância</li><li>Carrosséis com o seu conteúdo</li><li>Relatório mensal de desempenho</li></ul>
+        <a class="btn out" href="#comecar" data-plan="Autoridade">Escolher Autoridade</a>
+      </div>
+    </div>
+    <p class="note">Criação do clone: R$ 297, pagos uma vez. Sem fidelidade: cancele quando quiser.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap guar">
+    <div class="stamp" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><defs><path id="c2" d="M50,50 m-43,0 a43,43 0 1,1 86,0 a43,43 0 1,1 -86,0"/></defs>
+      <text font-family="JetBrains Mono, monospace" font-size="6.2" letter-spacing="2" fill="#F1EFEA"><textPath href="#c2">DEMONSTRAÇÃO GRÁTIS · SEM FIDELIDADE · DEMONSTRAÇÃO GRÁTIS · SEM FIDELIDADE ·</textPath></text></svg>
+      <b>0<small>risco</small></b>
+    </div>
+    <div>
+      <p class="mono chap"><b>07</b> Garantia</p>
+      <h2 class="reveal" data-hl="antes de pagar.">Você vê o seu clone antes de pagar.</h2>
+      <p class="lead" style="margin-top:22px">Você grava, eu crio uma demonstração com o seu rosto e a sua voz e mando no seu WhatsApp. Se não gostar, não paga nada. Se contratar, não tem fidelidade: cancela quando quiser e o seu clone é apagado.</p>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap about-grid">
+    <div class="about-img" role="img" aria-label="Nicolas Antonini"></div>
+    <div>
+      <p class="mono chap"><b>08</b> Quem faz</p>
+      <h2>Prazer, eu sou o Nicolas.</h2>
+      <p class="lead" style="margin-top:22px">Quase publicitário, apaixonado por IA e por agromarketing. Passei os últimos anos editando vídeo e fazendo marcas aparecerem, e hoje uso IA todo dia para produzir roteiro, animação e edição para clientes.</p>
+      <p class="lead" style="margin-top:14px">Os clones existem para tirar a câmera da frente de quem é bom no que faz e fica invisível porque não tem tempo de gravar.</p>
+      <div class="nums">
+        <div><strong>5 mil+</strong><span>seguidores no @antoninimov</span></div>
+        <div><strong>IA</strong><span>em todo o processo, do roteiro à capa</span></div>
+        <div><strong>1:1</strong><span>atendimento direto comigo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="mono chap"><b>09</b> Dúvidas</p>
+    <h2 style="margin-bottom:40px">Você pode se perguntar…</h2>
+    <div class="faq">
+      <details><summary>O clone fica com cara de IA?</summary><p>O clone usa o seu rosto, a sua voz e o seu jeito de falar, porque é treinado com o seu vídeo. Por isso a gravação inicial importa: eu te mando um guia de luz e enquadramento antes. E você vê a demonstração antes de pagar.</p></details>
+      <details><summary>Não entendo nada de tecnologia. É para mim?</summary><p>É. Você grava 2 minutos no celular e o resto acontece pelo WhatsApp: manda o tema, aprova o roteiro e recebe o vídeo.</p></details>
+      <details><summary>Preciso dizer que o vídeo foi feito com IA?</summary><p>Recomendo que sim. O Instagram e o TikTok pedem a marcação de conteúdo gerado por IA em vídeos realistas, e eu já entrego o post com essa marcação configurada.</p></details>
+      <details><summary>O meu clone pode ser usado para outra coisa?</summary><p>Não. Você assina um termo de uso de imagem e voz que diz exatamente para que ele serve. Ele não é vendido, compartilhado nem usado para treinar outros modelos, e é apagado se você cancelar.</p></details>
+      <details><summary>Quanto tempo leva para começar?</summary><p>O clone fica pronto em até 48 h depois da gravação. O primeiro vídeo sai na mesma semana.</p></details>
+      <details><summary>E se eu quiser cancelar?</summary><p>Não tem fidelidade. Você avisa pelo WhatsApp e a cobrança para no mês seguinte.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="comecar">
+  <div class="wrap">
+    <i class="streaks" style="height:28px;width:min(420px,70%);margin:0 auto 34px;color:var(--orange)" aria-hidden="true"></i>
+    <h2>Você grava uma vez. <em>O clone</em> aparece toda semana.</h2>
+    <a class="btn" href="#f">Ver meu clone grátis <i>→</i></a>
+    <div class="signup">
+      <div>
+        <p class="mono chap"><span class="dot rec"></span>Comece agora</p>
+        <h3 style="font-size:2rem;line-height:1">Peça a sua demonstração grátis</h3>
+        <p class="lead" style="margin-top:16px">Preencha e me chame no WhatsApp. Você recebe o passo a passo da gravação e, depois, um vídeo de demonstração com o seu clone.</p>
+      </div>
+      <form id="f" novalidate>
+        <label for="nome">Seu nome<input id="nome" name="nome" autocomplete="name" placeholder="Ex.: Ana Souza" required></label>
+        <label for="zap">WhatsApp<input id="zap" name="zap" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" required></label>
+        <input type="hidden" id="plano" value="Ainda não sei">
+        <p class="fine" id="planoInfo" hidden></p>
+        <button class="btn" type="submit">Pedir minha demonstração <i>→</i></button>
+        <p class="ok" id="ok" hidden></p>
+        <p class="fine">Seus dados são usados só para este contato, pelo WhatsApp. Nenhum clone é criado sem a sua autorização por escrito.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 antoninimov · Clones com IA</span>
+    <span>Instagram <a href="https://instagram.com/antoninimov" target="_blank" rel="noopener">@antoninimov</a></span>
+  </div>
+</footer>
+
+<a class="btn float hide" id="float" href="#comecar">Ver meu clone grátis <i>→</i></a>
+
+<script>
+// Número do WhatsApp que recebe os leads (DDI+DDD+número, só dígitos)
+const WHATS = "5500000000000";
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// títulos que acendem palavra a palavra (uma vez só, NN/g)
+document.querySelectorAll(".reveal").forEach(h => {
+  const hl = (h.dataset.hl || "").split(" ").filter(Boolean);
+  const words = h.textContent.trim().split(/\s+/);
+  const start = words.length - hl.length;
+  h.innerHTML = words.map((w, i) => `<span class="w${hl.length && i >= start ? " hl" : ""}">${w}</span>`).join(" ");
+});
+function paint(){
+  document.querySelectorAll(".reveal").forEach(h => {
+    const r = h.getBoundingClientRect(), vh = innerHeight;
+    const p = reduce ? 1 : Math.min(1, Math.max(0, (vh * .9 - r.top) / (vh * .5)));
+    const ws = h.querySelectorAll(".w"); const n = Math.round(p * ws.length);
+    ws.forEach((w, i) => { if (i < n) w.classList.add("on"); });
+  });
+  const fl = document.getElementById("float"), hero = document.querySelector(".hero").getBoundingClientRect(), fin = document.getElementById("comecar").getBoundingClientRect();
+  fl.classList.toggle("hide", hero.bottom > 0 || fin.top < innerHeight);
+}
+addEventListener("scroll", paint, {passive:true}); addEventListener("resize", paint); paint();
+
+// timecode do retrato
+const tc = document.getElementById("tc");
+if (!reduce) { let f = 0; setInterval(() => { f++; const s = Math.floor(f / 30), p = n => String(n).padStart(2, "0"); tc.textContent = `00:${p(Math.floor(s / 60))}:${p(s % 60)}:${p(f % 30)}`; }, 1000 / 30); }
+
+// painel de produção (ilustrativo)
+const agents = [...document.querySelectorAll("#agents .agent")];
+const steps = ["Pauta escolhida: 3 erros no IR", "Roteiro aprovado pelo cliente", "Gancho: 'A Receita vai te chamar'", "Clone gravou 00:42", "Corte e ritmo finalizados", "Legenda animada aplicada", "Capa no padrão do perfil", "Agendado: amanhã, 12h"];
+const feed = document.getElementById("feed"); const st = ["s1","s2","s3"].map(id => document.getElementById(id));
+let k = 0, totals = [0,0,0];
+function tick(){
+  const i = k % agents.length;
+  agents.forEach((a, j) => { a.classList.toggle("busy", j === i); if (j === i) a.querySelector("small").textContent = "trabalhando"; });
+  if (i > 0) { const prev = agents[i - 1]; prev.classList.add("done"); prev.querySelector("small").textContent = "pronto"; }
+  if (i === 0) agents.forEach(a => a.classList.remove("done"));
+  const li = document.createElement("li"); const now = new Date(); li.innerHTML = `<span>${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}</span> ${steps[i]}`;
+  feed.prepend(li); while (feed.children.length > 5) feed.lastChild.remove();
+  if (i === 1) totals[0]++; if (i === 4) totals[1]++; if (i === 7) totals[2]++;
+  st.forEach((el, j) => el.textContent = totals[j]);
+  k++;
+}
+if (reduce) { totals = [4,4,4]; st.forEach((el, j) => el.textContent = totals[j]); steps.slice(-5).reverse().forEach(s => { const li = document.createElement("li"); li.textContent = s; feed.append(li); }); }
+else { tick(); setInterval(tick, 1400); }
+
+// planos → formulário
+document.querySelectorAll("[data-plan]").forEach(b => b.addEventListener("click", () => {
+  document.getElementById("plano").value = b.dataset.plan;
+  const pi = document.getElementById("planoInfo"); pi.hidden = false; pi.textContent = `Plano escolhido: ${b.dataset.plan}. Você confirma depois da demonstração.`;
+}));
+// atalho direto para o WhatsApp no topo (aparece quando o número estiver configurado)
+if (!/^55?0+$/.test(WHATS)) { const wa = document.querySelector(".wa-link"); wa.href = `https://wa.me/${WHATS}?text=${encodeURIComponent("Oi! Quero ver uma demonstração do meu clone.")}`; wa.target = "_blank"; wa.rel = "noopener"; wa.hidden = false; }
+document.getElementById("f").addEventListener("submit", e => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim(); const ok = document.getElementById("ok"); ok.hidden = false;
+  if (!v("nome") || v("zap").replace(/\D/g, "").length < 10) { ok.textContent = "Preencha seu nome e um WhatsApp com DDD para continuar."; return; }
+  const txt = `Oi! Sou ${v("nome")} e quero ver uma demonstração do meu clone.\nPlano de interesse: ${v("plano")}`;
+  ok.innerHTML = `Tudo certo. <a href="https://wa.me/${WHATS}?text=${encodeURIComponent(txt)}" target="_blank" rel="noopener">Abrir a conversa no WhatsApp</a> com a sua mensagem já escrita.`;
+});
+</script>
+</body>
+</html>
