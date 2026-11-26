@@ -388,6 +388,9 @@ function send() {
   L.push("", "Meu segmento ainda está livre na minha cidade?");
   window.open(`https://wa.me/${WHATS}?text=${encodeURIComponent(L.join("\n"))}`, "_blank", "noopener");
 }
+// plano vindo da página principal (?plano=presenca|constancia|autoridade)
+{ const pq = { presenca: "12", constancia: "20", autoridade: "30" }[(new URLSearchParams(location.search).get("plano") || "").toLowerCase()];
+  if (pq) document.querySelectorAll('[data-name="plano"] button').forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === pq))); }
 update();
 </script>
 </body>
