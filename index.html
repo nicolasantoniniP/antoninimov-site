@@ -224,6 +224,8 @@ footer .in{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;al
   .impl{padding:24px}
   .avail{margin-top:56px;padding:30px 22px}
 }
+.steps.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:880px){.steps.three{grid-template-columns:minmax(0,1fr)}}
 /* barra fixa (celular) */
 .sticky{display:none}
 @media (max-width:760px){
@@ -436,7 +438,7 @@ footer .in{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;al
 <section class="band">
   <div class="in c">
     <h2 class="h2">Você vê funcionando antes de decidir.</h2>
-    <div class="steps" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+    <div class="steps three">
       <div class="step"><h3>Conversa grátis</h3><p>Eu mostro como o clone é feito e como ficaria no seu perfil.</p></div>
       <div class="step"><h3>Primeiro teste</h3><p>O primeiro vídeo do seu clone chega sem edição para você avaliar.</p></div>
       <div class="step"><h3>Só então a produção</h3><p>Os vídeos do mês começam quando você aprovar o seu clone.</p></div>
