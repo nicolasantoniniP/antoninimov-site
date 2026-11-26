@@ -199,6 +199,31 @@ details p{padding:0 0 24px;color:var(--muted);max-width:60ch}
 footer{padding-block:30px calc(30px + 70px);font-size:.8rem;color:var(--muted);border-top:1px solid var(--line)}
 footer .in{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
 
+
+/* planos em cartões no celular (a tabela some) */
+.mplans{display:none}
+.mp{background:var(--tile);border-radius:26px;padding:24px;text-align:left;display:grid;gap:8px;border:1.5px solid transparent}
+.mp.hot{border-color:var(--accent)}
+.mph{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.mp .pn{font-size:1.45rem;font-weight:700;letter-spacing:-.025em}
+.mp .pp{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mp .tag{font-size:.78rem;font-weight:600;color:var(--spark)}
+.mp .mpv{color:var(--muted);font-size:.95rem}
+.mp ul{margin:4px 0 8px;padding-left:20px;display:grid;gap:4px;color:var(--fg);font-size:.97rem}
+.mp .btn{justify-self:start}
+@media (max-width:700px){
+  .cmpwrap{display:none}
+  .mplans{display:grid;gap:12px;margin-top:28px}
+  .stage{width:min(250px,64%);margin-top:44px}
+  .phone{border-radius:38px;padding:9px}
+  .screen{border-radius:30px}
+  .caption{font-size:1.05rem;bottom:80px}
+  .tile{min-height:0}
+  .hero{padding-block:56px 0}
+  .hero h1{max-width:11ch}
+  .impl{padding:24px}
+  .avail{margin-top:56px;padding:30px 22px}
+}
 /* barra fixa (celular) */
 .sticky{display:none}
 @media (max-width:760px){
@@ -368,6 +393,18 @@ footer .in{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;al
           <tr><td>Relatório mensal de desempenho</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="mplans">
+      <div class="mp"><div class="mph"><span class="pn">Presença</span><span class="pp">R$ 1.500/mês</span></div><p class="mpv">12 vídeos por mês · 3 por semana · ≈ R$ 125 por vídeo</p>
+        <ul><li>Roteiros aprovados no WhatsApp</li><li>Edição com legenda e capa</li></ul>
+        <a class="btn ghost" href="https://antoninimov.com.br/montar/?plano=presenca">Escolher Presença</a></div>
+      <div class="mp hot"><div class="mph"><span class="pn">Constância</span><span class="pp">R$ 2.000/mês</span></div><p class="tag" style="margin:0">Recomendado</p><p class="mpv">20 vídeos por mês · 1 por dia útil · R$ 100 por vídeo</p>
+        <ul><li>Tudo do Presença</li><li>Pautas semanais do seu nicho</li><li>Postagem após a sua aprovação</li></ul>
+        <a class="btn" href="https://antoninimov.com.br/montar/?plano=constancia">Escolher Constância</a></div>
+      <div class="mp"><div class="mph"><span class="pn">Autoridade</span><span class="pp">R$ 2.900/mês</span></div><p class="mpv">30 vídeos por mês · ≈ R$ 97 por vídeo</p>
+        <ul><li>Tudo do Constância</li><li>Mais de um porta-voz clonado</li><li>Relatório mensal de desempenho</li></ul>
+        <a class="btn ghost" href="https://antoninimov.com.br/montar/?plano=autoridade">Escolher Autoridade</a></div>
     </div>
     <p class="note">Contrato mínimo de 3 meses: a implementação e mais dois. Depois é mensal, com aviso de 30 dias.</p>
 
