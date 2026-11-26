@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monte seu clone · antoninimov</title>
+<meta name="description" content="Monte o plano do seu clone com IA: nicho, quantidade de vídeos e formatos. Veja o investimento na hora.">
+<meta property="og:title" content="Monte seu clone · antoninimov">
+<meta property="og:description" content="Escolha nicho, vídeos por mês e formatos. Veja o investimento na hora.">
+<meta property="og:image" content="https://antoninimov.com.br/assets/nicolas_16x9.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#070707;--bg2:#0F0F0F;--card:#141414;--fg:#F1EFEA;--muted:#9C998F;--dim:#6E6B64;--line:#262523;--or:#FF5B1F;--orS:rgba(255,91,31,.12);--wa:#25D366;
+  --d:"Archivo","Arial Black",Arial,sans-serif;--b:"Manrope",system-ui,-apple-system,sans-serif;--m:"JetBrains Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{overflow-x:hidden}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--b);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:28px max(16px,3vw) 120px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+.logo{font-family:var(--d);font-weight:800;font-size:1.15rem;text-decoration:none}.logo span{color:var(--or)}
+.mono{font-family:var(--m);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--d);font-weight:800;letter-spacing:-.03em;font-size:clamp(2.2rem,5.5vw,3.8rem);line-height:1;margin:10px 0 14px;text-wrap:balance}
+h1 em{font-style:normal;color:var(--or)}
+.sub{color:var(--muted);max-width:56ch;margin:0 0 36px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start}
+
+/* progresso */
+.prog{display:flex;gap:6px;margin-bottom:22px}
+.prog i{flex:1;height:4px;border-radius:4px;background:var(--line);transition:background .3s}
+.prog i.on{background:var(--or)}
+
+.step{display:none;background:var(--bg2);border:1px solid var(--line);border-radius:22px;padding:28px}
+.step.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.step h2{font-family:var(--d);font-weight:800;font-size:1.6rem;letter-spacing:-.02em;margin:6px 0 4px;line-height:1.1}
+.step .hint{color:var(--muted);margin:0 0 22px;font-size:.95rem}
+.q{margin:22px 0 10px;font-weight:700}
+.q small{font-weight:500;color:var(--dim)}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:10px 16px;cursor:pointer;transition:.15s;font-weight:600;font-size:.94rem;user-select:none}
+.chip:hover{border-color:#3a3936}
+.chip[aria-pressed="true"]{border-color:var(--or);background:var(--orS);color:#fff}
+
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:.85rem;color:var(--muted);font-weight:600}
+label.f.full{grid-column:1/-1}
+input[type=text],textarea{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 14px;outline:none;font-size:1rem;width:100%}
+input:focus,textarea:focus{border-color:var(--or)}
+textarea{resize:vertical;min-height:84px}
+
+/* planos */
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.plan{position:relative;border:1px solid var(--line);background:var(--card);border-radius:18px;padding:20px;cursor:pointer;transition:.15s;text-align:left}
+.plan:hover{border-color:#3a3936}
+.plan[aria-pressed="true"]{border-color:var(--or);background:linear-gradient(160deg,#1C120C,var(--card) 70%)}
+.plan .nm{font-family:var(--m);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.plan .vd{font-family:var(--d);font-weight:900;font-size:2.6rem;line-height:1;margin:10px 0 2px}
+.plan .vd small{font-size:.9rem;font-weight:700;color:var(--muted);font-family:var(--b)}
+.plan .pr{font-weight:800;margin-top:10px}
+.plan .pv{font-size:.82rem;color:var(--muted)}
+.plan .tag{position:absolute;top:-10px;right:14px;background:var(--or);color:#140600;font-size:.68rem;font-weight:800;padding:3px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+.freq{margin-top:16px;padding:14px 16px;border-radius:14px;background:var(--card);border:1px dashed var(--line);color:var(--muted);font-size:.93rem}
+.freq b{color:var(--fg)}
+
+.pay{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pay .plan .vd{font-size:1.9rem}
+
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:28px}
+.btn{border:0;cursor:pointer;border-radius:999px;padding:14px 24px;font-weight:800;letter-spacing:.01em;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.btn.pri{background:var(--or);color:#140600}
+.btn.pri:disabled{opacity:.35;cursor:not-allowed}
+.btn.gh{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.btn.wa{background:var(--wa);color:#04130A;font-size:1.02rem;padding:17px 28px;width:100%;justify-content:center;text-transform:uppercase}
+.err{color:#ff8a65;font-size:.85rem;min-height:1.2em;margin-top:10px}
+
+/* resumo */
+aside{position:sticky;top:20px;background:var(--bg2);border:1px solid var(--line);border-radius:22px;padding:24px}
+aside h3{font-family:var(--d);font-size:1.1rem;margin:0 0 14px}
+.li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:.92rem}
+.li span:first-child{color:var(--muted)}
+.li span:last-child{text-align:right;font-weight:700}
+.tot{margin-top:16px;padding:16px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+.tot .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tot .big{font-family:var(--d);font-weight:900;font-size:1.45rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tot .row+.row{margin-top:8px}
+.tot small{color:var(--muted)}
+.excl{margin-top:14px;display:flex;gap:10px;align-items:flex-start;font-size:.84rem;color:var(--muted)}
+.excl b{color:var(--fg)}
+.dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--or);margin-top:6px;box-shadow:0 0 0 4px var(--orS)}
+
+.final{display:grid;gap:14px}
+.final .note{font-size:.85rem;color:var(--dim);text-align:center}
+
+/* barra mobile */
+.mbar{display:none}
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  .layout>*{min-width:0}
+  aside{position:static}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:9;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(7,7,7,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .mbar b{font-family:var(--d);font-size:1.15rem}
+}
+@media (max-width:640px){
+  .step{padding:20px}
+  .plans,.pay,.fields{grid-template-columns:1fr}
+  .plan .vd{font-size:2.1rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/">antoninimov<span>.</span></a>
+    <span class="mono">Monte seu clone</span>
+  </header>
+
+  <p class="mono" style="color:var(--or)">Leva 1 minuto</p>
+  <h1>Monte o seu clone e veja o <em>investimento na hora.</em></h1>
+  <p class="sub">Conta um pouco do seu negócio. No final, o resumo vai direto pro meu WhatsApp e eu confirmo se o seu segmento ainda está livre na sua cidade.</p>
+
+  <div class="layout">
+    <form id="f" novalidate onsubmit="return false">
+      <div class="prog" id="prog"><i></i><i></i><i></i><i></i><i></i></div>
+
+      <!-- 1 -->
+      <section class="step on" data-step="1">
+        <span class="mono">Passo 1 de 5</span>
+        <h2>Qual é o seu negócio?</h2>
+        <p class="hint">Atendo só 1 cliente por segmento em cada cidade.</p>
+        <p class="q">Nicho</p>
+        <div class="chips" data-name="nicho" data-single>
+          <button type="button" class="chip">Médico / clínica</button>
+          <button type="button" class="chip">Odontologia</button>
+          <button type="button" class="chip">Estética</button>
+          <button type="button" class="chip">Advocacia</button>
+          <button type="button" class="chip">Imobiliária / corretor</button>
+          <button type="button" class="chip">Agro</button>
+          <button type="button" class="chip">Energia solar</button>
+          <button type="button" class="chip">Educação / cursos</button>
+          <button type="button" class="chip">Restaurante / food</button>
+          <button type="button" class="chip">Contabilidade / finanças</button>
+          <button type="button" class="chip">Loja / varejo</button>
+          <button type="button" class="chip">Outro</button>
+        </div>
+        <div class="fields" style="margin-top:18px">
+          <label class="f full" id="outroBox" hidden>Qual nicho?<input type="text" id="outro" placeholder="Ex.: academia, pet shop…"></label>
+          <label class="f">Nome da empresa<input type="text" id="empresa" placeholder="Ex.: Clínica Sorriso" autocomplete="organization"></label>
+          <label class="f">Cidade / estado<input type="text" id="cidade" placeholder="Ex.: Rio Verde · GO" autocomplete="address-level2"></label>
+          <label class="f full">Instagram <small style="color:var(--dim);font-weight:500">(opcional)</small><input type="text" id="insta" placeholder="@seuperfil"></label>
+        </div>
+        <div class="err" data-err></div>
+        <div class="nav"><span></span><button type="button" class="btn pri" data-next>Continuar →</button></div>
+      </section>
+
+      <!-- 2 -->
+      <section class="step" data-step="2">
+        <span class="mono">Passo 2 de 5</span>
+        <h2>Como está o seu conteúdo hoje?</h2>
+        <p class="hint">Isso me ajuda a chegar na conversa já com um diagnóstico.</p>
+        <p class="q">Quantos vídeos vocês postam por semana?</p>
+        <div class="chips" data-name="freqAtual" data-single>
+          <button type="button" class="chip">Nenhum</button>
+          <button type="button" class="chip">1 a 2</button>
+          <button type="button" class="chip">3 a 5</button>
+          <button type="button" class="chip">Todo dia</button>
+        </div>
+        <p class="q">Quem cuida do conteúdo hoje?</p>
+        <div class="chips" data-name="quem" data-single>
+          <button type="button" class="chip">Ninguém</button>
+          <button type="button" class="chip">Eu mesmo</button>
+          <button type="button" class="chip">Um funcionário</button>
+          <button type="button" class="chip">Agência / social media</button>
+        </div>
+        <p class="q">O que mais trava? <small>(pode marcar vários)</small></p>
+        <div class="chips" data-name="trava">
+          <button type="button" class="chip">Falta de tempo pra gravar</button>
+          <button type="button" class="chip">Vergonha da câmera</button>
+          <button type="button" class="chip">Não sei o que falar</button>
+          <button type="button" class="chip">Edição demora</button>
+          <button type="button" class="chip">Posto e não vende</button>
+          <button type="button" class="chip">Falta constância</button>
+        </div>
+        <div class="err" data-err></div>
+        <div class="nav"><button type="button" class="btn gh" data-back>← Voltar</button><button type="button" class="btn pri" data-next>Continuar →</button></div>
+      </section>
+
+      <!-- 3 -->
+      <section class="step" data-step="3">
+        <span class="mono">Passo 3 de 5</span>
+        <h2>Quantos vídeos por mês?</h2>
+        <p class="hint">O 1º mês já vem com 20 vídeos dentro da implementação. O plano abaixo vale a partir do 2º mês.</p>
+        <div class="plans" data-name="plano" data-single>
+          <button type="button" class="plan" data-v="12" data-p="1500"><span class="nm">Presença</span><div class="vd">12 <small>vídeos/mês</small></div><div class="pr">R$ 1.500/mês</div><div class="pv">≈ R$ 125 por vídeo</div></button>
+          <button type="button" class="plan" data-v="20" data-p="2000" aria-pressed="true"><span class="tag">Mais escolhido</span><span class="nm">Constância</span><div class="vd">20 <small>vídeos/mês</small></div><div class="pr">R$ 2.000/mês</div><div class="pv">R$ 100 por vídeo</div></button>
+          <button type="button" class="plan" data-v="30" data-p="2900"><span class="nm">Autoridade</span><div class="vd">30 <small>vídeos/mês</small></div><div class="pr">R$ 2.900/mês</div><div class="pv">≈ R$ 97 por vídeo</div></button>
+        </div>
+        <div class="freq" id="freq"></div>
+        <p class="q">Quem vai aparecer nos vídeos?</p>
+        <div class="chips" data-name="rosto" data-single>
+          <button type="button" class="chip" aria-pressed="true">Eu (dono / sócio)</button>
+          <button type="button" class="chip">Um porta-voz da equipe</button>
+          <button type="button" class="chip">Ainda não sei</button>
+        </div>
+        <div class="err" data-err></div>
+        <div class="nav"><button type="button" class="btn gh" data-back>← Voltar</button><button type="button" class="btn pri" data-next>Continuar →</button></div>
+      </section>
+
+      <!-- 4 -->
+      <section class="step" data-step="4">
+        <span class="mono">Passo 4 de 5</span>
+        <h2>Pra que você quer os vídeos?</h2>
+        <p class="hint">Eu monto a linha de roteiros a partir disso.</p>
+        <p class="q">Objetivo principal</p>
+        <div class="chips" data-name="objetivo" data-single>
+          <button type="button" class="chip">Atrair clientes / pacientes</button>
+          <button type="button" class="chip">Virar autoridade na cidade</button>
+          <button type="button" class="chip">Vender um produto ou serviço</button>
+          <button type="button" class="chip">Anúncios (tráfego pago)</button>
+          <button type="button" class="chip">Contratar / marca empregadora</button>
+        </div>
+        <p class="q">Formatos que você curte <small>(pode marcar vários)</small></p>
+        <div class="chips" data-name="formatos">
+          <button type="button" class="chip">Falando pra câmera</button>
+          <button type="button" class="chip">Responde caixinha de perguntas</button>
+          <button type="button" class="chip">Tela dividida / react</button>
+          <button type="button" class="chip">Notícia do setor</button>
+          <button type="button" class="chip">Bastidores</button>
+          <button type="button" class="chip">Carrossel</button>
+        </div>
+        <p class="q">Voz do clone</p>
+        <div class="chips" data-name="voz" data-single>
+          <button type="button" class="chip" aria-pressed="true">Voz clonada</button>
+          <button type="button" class="chip">Mando áudio meu (≈10 min/mês)</button>
+          <button type="button" class="chip">Quero ouvir as duas</button>
+        </div>
+        <div class="err" data-err></div>
+        <div class="nav"><button type="button" class="btn gh" data-back>← Voltar</button><button type="button" class="btn pri" data-next>Continuar →</button></div>
+      </section>
+
+      <!-- 5 -->
+      <section class="step" data-step="5">
+        <span class="mono">Passo 5 de 5</span>
+        <h2>Como prefere a implementação?</h2>
+        <p class="hint">Captação, clone de rosto e voz (até 3 looks), diagnóstico do perfil e 20 vídeos no 1º mês.</p>
+        <div class="pay" data-name="pagamento" data-single>
+          <button type="button" class="plan" aria-pressed="true"><span class="nm">Parcelado</span><div class="vd">10x R$ 500</div><div class="pv">no cartão</div></button>
+          <button type="button" class="plan"><span class="tag">Economize R$ 497</span><span class="nm">À vista</span><div class="vd">R$ 4.500</div><div class="pv">Pix ou transferência</div></button>
+        </div>
+        <div class="fields" style="margin-top:20px">
+          <label class="f">Seu nome<input type="text" id="nome" placeholder="Como posso te chamar?" autocomplete="given-name"></label>
+          <label class="f">Melhor horário pra conversar
+            <input type="text" id="horario" placeholder="Ex.: manhã, depois das 18h…"></label>
+          <label class="f full">Quer contar mais alguma coisa? <small style="color:var(--dim);font-weight:500">(opcional)</small><textarea id="obs" placeholder="Ex.: tenho uma inauguração em janeiro e queria vídeos pra isso."></textarea></label>
+        </div>
+        <div class="err" data-err></div>
+        <div class="final" style="margin-top:22px">
+          <button type="button" class="btn wa" id="enviar">Enviar no WhatsApp e checar meu segmento →</button>
+          <p class="note">Nada é cobrado aqui. Primeiro a gente conversa, você vê clones funcionando e só depois decide.</p>
+          <button type="button" class="btn gh" data-back style="justify-self:start">← Voltar</button>
+        </div>
+      </section>
+    </form>
+
+    <aside aria-live="polite">
+      <h3>Seu clone</h3>
+      <div class="li"><span>Nicho</span><span id="rNicho">—</span></div>
+      <div class="li"><span>Cidade</span><span id="rCidade">—</span></div>
+      <div class="li"><span>Plano mensal</span><span id="rPlano">—</span></div>
+      <div class="li"><span>Vídeos</span><span id="rVid">—</span></div>
+      <div class="tot">
+        <div class="row"><small>Implementação (mês 1)</small><span class="big" id="rImpl">10x R$ 500</span></div>
+        <div class="row"><small>A partir do mês 2</small><span class="big" id="rMes">R$ 2.000</span></div>
+      </div>
+      <div class="excl"><span class="dot"></span><span><b>Exclusividade:</b> 1 cliente por segmento em cada cidade. Contrato mínimo de 3 meses; depois mensal com aviso de 30 dias.</span></div>
+    </aside>
+  </div>
+</div>
+
+<div class="mbar"><span><small class="mono" style="display:block">A partir do mês 2</small><b id="mMes">R$ 2.000/mês</b></span><button type="button" class="btn pri" id="mNext">Continuar →</button></div>
+
+<script>
+const WHATS = "5564992859526";
+const $ = s => document.querySelector(s);
+const steps = [...document.querySelectorAll(".step")];
+let cur = 0;
+
+// chips / cards
+document.querySelectorAll("[data-name]").forEach(g => {
+  const single = g.hasAttribute("data-single");
+  g.querySelectorAll("button").forEach(b => {
+    if (!b.hasAttribute("aria-pressed")) b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", () => {
+      if (single) g.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", "false"));
+      b.setAttribute("aria-pressed", single ? "true" : String(b.getAttribute("aria-pressed") !== "true"));
+      update();
+    });
+  });
+});
+const sel = n => [...document.querySelectorAll(`[data-name="${n}"] [aria-pressed="true"]`)];
+const txt = b => (b.querySelector(".nm")?.textContent || b.textContent).trim();
+const val = n => sel(n).map(txt);
+const brl = v => "R$ " + v.toLocaleString("pt-BR");
+
+function nicho() {
+  const n = val("nicho")[0];
+  return n === "Outro" ? ($("#outro").value.trim() || "Outro") : (n || "");
+}
+function plano() {
+  const b = sel("plano")[0];
+  return b ? { nome: txt(b), v: +b.dataset.v, p: +b.dataset.p } : null;
+}
+
+function update() {
+  $("#outroBox").hidden = val("nicho")[0] !== "Outro";
+  const p = plano();
+  $("#rNicho").textContent = nicho() || "—";
+  $("#rCidade").textContent = $("#cidade").value.trim() || "—";
+  $("#rPlano").textContent = p ? p.nome : "—";
+  $("#rVid").textContent = p ? `20 no 1º mês · ${p.v}/mês depois` : "—";
+  $("#rMes").textContent = p ? brl(p.p) : "—";
+  $("#mMes").textContent = p ? brl(p.p) + "/mês" : "—";
+  $("#rImpl").textContent = val("pagamento")[0] === "À vista" ? "R$ 4.500" : "10x R$ 500";
+  if (p) {
+    const sem = (p.v / 4.3).toFixed(1).replace(".0", "").replace(".", ",");
+    const atual = val("freqAtual")[0];
+    $("#freq").innerHTML = `Dá cerca de <b>${sem} vídeos por semana</b> no seu perfil` + (atual ? ` (hoje: ${atual.toLowerCase()} por semana)` : "") + ", sem você parar pra gravar.";
+  }
+}
+document.querySelectorAll("input,textarea").forEach(i => i.addEventListener("input", update));
+
+function check(i) {
+  if (i === 0) {
+    if (!val("nicho").length) return "Escolha o seu nicho.";
+    if (val("nicho")[0] === "Outro" && !$("#outro").value.trim()) return "Conta qual é o seu nicho.";
+    if (!$("#cidade").value.trim()) return "Informe a sua cidade (é por ela que eu confiro a exclusividade).";
+  }
+  if (i === 1 && !val("freqAtual").length) return "Marque quantos vídeos vocês postam hoje.";
+  if (i === 2 && !plano()) return "Escolha a quantidade de vídeos.";
+  if (i === 3 && !val("objetivo").length) return "Escolha o objetivo principal.";
+  if (i === 4 && !$("#nome").value.trim()) return "Como posso te chamar?";
+  return "";
+}
+function go(i) {
+  cur = Math.max(0, Math.min(steps.length - 1, i));
+  steps.forEach((s, k) => s.classList.toggle("on", k === cur));
+  document.querySelectorAll("#prog i").forEach((b, k) => b.classList.toggle("on", k <= cur));
+  $("#mNext").textContent = cur === steps.length - 1 ? "Enviar →" : "Continuar →";
+  const top = $("#prog").getBoundingClientRect().top + scrollY - 20;
+  if (scrollY > top) scrollTo({ top, behavior: "smooth" });
+}
+function next() {
+  const e = check(cur);
+  steps[cur].querySelector("[data-err]").textContent = e;
+  if (e) return;
+  if (cur === steps.length - 1) return send();
+  go(cur + 1);
+}
+document.querySelectorAll("[data-next]").forEach(b => b.addEventListener("click", next));
+document.querySelectorAll("[data-back]").forEach(b => b.addEventListener("click", () => go(cur - 1)));
+$("#mNext").addEventListener("click", next);
+$("#enviar").addEventListener("click", next);
+
+function send() {
+  const p = plano(), L = [];
+  const add = (k, v) => { if (v && (!Array.isArray(v) || v.length)) L.push(`• ${k}: ${Array.isArray(v) ? v.join(", ") : v}`); };
+  L.push(`Oi Nicolas! Montei meu clone no site. Sou ${$("#nome").value.trim()}.`, "");
+  add("Empresa", $("#empresa").value.trim());
+  add("Nicho", nicho());
+  add("Cidade", $("#cidade").value.trim());
+  add("Instagram", $("#insta").value.trim());
+  add("Posta hoje", val("freqAtual")[0] && val("freqAtual")[0] + " vídeo(s) por semana");
+  add("Quem cuida", val("quem")[0]);
+  add("O que trava", val("trava"));
+  add("Plano", p && `${p.nome} · ${p.v} vídeos/mês · ${brl(p.p)}/mês a partir do mês 2`);
+  add("Quem aparece", val("rosto")[0]);
+  add("Objetivo", val("objetivo")[0]);
+  add("Formatos", val("formatos"));
+  add("Voz", val("voz")[0]);
+  add("Implementação", val("pagamento")[0] === "À vista" ? "R$ 4.500 à vista" : "10x de R$ 500");
+  add("Melhor horário", $("#horario").value.trim());
+  add("Obs", $("#obs").value.trim());
+  L.push("", "Meu segmento ainda está livre na minha cidade?");
+  window.open(`https://wa.me/${WHATS}?text=${encodeURIComponent(L.join("\n"))}`, "_blank", "noopener");
+}
+update();
+</script>
+</body>
+</html>
